@@ -1,0 +1,27 @@
+name: Build Windows
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  package:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: cd apps/desktop && pnpm run build && pnpm exec electron-builder --win --publish never
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pi-gui-windows-installer
+          path: apps/desktop/release/pi-gui-Setup-*.exe
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pi-gui-windows-portable
+          path: apps/desktop/release/pi-gui-Portable-*.exe
