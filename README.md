@@ -2,7 +2,7 @@
 
 Electron desktop shell for `pi` sessions. Built for local agent workflows.
 
-This repo packages a desktop UI around `@earendil-works/pi-coding-agent`. It is not a standalone coding agent runtime. The app depends on the upstream `pi` package for session management, model/auth setup, and agent execution.
+This repo packages a desktop UI around `@earendil-works/pi-coding-agent`. It is not a standalone coding agent runtime. The App depends on the upstream `pi` package for session management, model/auth setup, and agent execution.
 
 ![pi-gui demo](./docs/readme/demo.gif)
 
