@@ -17,11 +17,9 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: cd apps/desktop && pnpm run build && pnpm exec electron-builder --win --publish never
+      - name: List built artifacts
+        run: Get-ChildItem apps/desktop/release/*.exe
       - uses: actions/upload-artifact@v4
         with:
-          name: pi-gui-windows-installer
-          path: apps/desktop/release/pi-gui-Setup-*.exe
-      - uses: actions/upload-artifact@v4
-        with:
-          name: pi-gui-windows-portable
-          path: apps/desktop/release/pi-gui-Portable-*.exe
+          name: pi-gui-windows
+          path: apps/desktop/release/*.exe
